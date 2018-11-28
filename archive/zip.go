@@ -73,6 +73,7 @@ func (z *Zip) AddFile(path string, file *os.File) error {
 	}
 	header.Name = path
 	header.Method = zip.Deflate
+	header.SetMode(os.ModePerm)
 	header.SetModTime(time.Unix(0, 0))
 
 	zippedFile, err := z.writer.CreateHeader(header)
